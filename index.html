@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Cutie Doll Dress Up Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            border: 8px solid #ff6b8b;
+        }
+
+        .title {
+            color: #ff6b8b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #ffe0e9;
+        }
+
+        .subtitle {
+            color: #ff8fab;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .doll-container {
+            background: linear-gradient(180deg, #e0f7ff, #b3e5fc);
+            border-radius: 25px;
+            padding: 30px 20px;
+            margin: 20px 0;
+            border: 5px solid #4fc3f7;
+            box-shadow: inset 0 0 20px rgba(79, 195, 247, 0.3);
+        }
+
+        .doll {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        /* Head with cute face */
+        .head {
+            width: 100px;
+            height: 100px;
+            background: #FFE0E9;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            border: 3px solid #FF9EBD;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .face {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+        }
+
+        .eyes {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .eye {
+            width: 15px;
+            height: 15px;
+            background: #333;
+            border-radius: 50%;
+            animation: blink 3s infinite;
+        }
+
+        .smile {
+            width: 30px;
+            height: 15px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 30px 30px;
+            margin: 0 auto;
+        }
+
+        @keyframes blink {
+            0%, 95%, 100% { transform: scaleY(1); }
+            97% { transform: scaleY(0.1); }
+        }
+
+        /* Dress */
+        .dress {
+            width: 120px;
+            height: 150px;
+            background: linear-gradient(45deg, #FF9EBD, #FFB6C1);
+            border-radius: 60px 60px 20px 20px;
+            margin: -10px auto 0;
+            position: relative;
+            border: 3px solid #FF69B4;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .dress-design {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+        }
+
+        /* Shoes */
+        .shoes {
+            width: 80px;
+            height: 25px;
+            background: #8B4513;
+            border-radius: 10px 10px 20px 20px;
+            margin: -5px auto 0;
+            border: 2px solid #654321;
+            transition: all 0.3s ease;
+        }
+
+        /* Hat */
+        .hat {
+            width: 70px;
+            height: 25px;
+            background: #FF6B8B;
+            border-radius: 50% 50% 0 0;
+            margin: -15px auto 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hat::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 15px;
+            background: inherit;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* Controls */
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #FF6B8B, #FF8FAB);
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.6);
+            background: linear-gradient(45deg, #FF8FAB, #FFB3C6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .instructions {
+            background: #ffe0e9;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 3px dashed #ff6b8b;
+        }
+
+        .instructions h3 {
+            color: #ff6b8b;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #d63384;
+            font-size: 0.9em;
+        }
+
+        .current-outfit {
+            background: #e0f7ff;
+            padding: 10px;
+            border-radius: 15px;
+            margin-top: 15px;
+            border: 2px solid #4fc3f7;
+        }
+
+        .current-outfit h4 {
+            color: #0288d1;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="title">🎀 Cutie Doll Dress Up</h1>
+        <p class="subtitle">Make me pretty! Click the buttons to change my outfit ✨</p>
+        
+        <div class="doll-container">
+            <div class="doll">
+                <div class="head">
+                    <div class="face">
+                        <div class="eyes">
+                            <div class="eye left"></div>
+                            <div class="eye right"></div>
+                        </div>
+                        <div class="smile"></div>
+                    </div>
+                    <div class="hat" id="hat"></div>
+                </div>
+                <div class="body">
+                    <div class="dress" id="dress">
+                        <div class="dress-design"></div>
+                    </div>
+                </div>
+                <div class="legs">
+                    <div class="shoes" id="shoes"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="current-outfit">
+            <h4>Current Outfit</h4>
+            <p id="outfit-info">Pretty in pink! 💖</p>
+        </div>
+
+        <div class="controls">
+            <button onclick="changeDress()">👗 Change Dress</button>
+            <button onclick="changeShoes()">👠 Change Shoes</button>
+            <button onclick="changeHat()">🎀 Change Hat</button>
+            <button onclick="randomizeAll()">✨ Randomize All!</button>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Play 🎮</h3>
+            <p>Click the buttons to change my clothes! Mix and match colors to create cute outfits. Press "Randomize All!" for a surprise look! 🌈</p>
+        </div>
+    </div>
+
+    <script>
+        const cuteColors = [
+            '#FFB6C1', '#FF69B4', '#FF1493', '#C71585', // Pinks
+            '#87CEEB', '#00BFFF', '#1E90FF', '#4682B4', // Blues  
+            '#98FB98', '#90EE90', '#32CD32', '#00FA9A', // Greens
+            '#FFD700', '#FFA500', '#FF8C00', '#FF6347', // Yellows/Oranges
+            '#DDA0DD', '#EE82EE', '#DA70D6', '#BA55D3', // Purples
+            '#FFA07A', '#FF7F50', '#FF6347', '#FF4500'  // Corals
+        ];
+
+        const outfitMessages = [
+            "So pretty! 🌸", "Fabulous! 💫", "Adorable! 🥰", 
+            "Stylish! 👗", "Cute combo! 💖", "Love it! 😍",
+            "So fashionable! 👑", "Beautiful! 🌺", "Amazing! ✨"
+        ];
+
+        function getRandomColor() {
+            return cuteColors[Math.floor(Math.random() * cuteColors.length)];
+        }
+
+        function getRandomMessage() {
+            return outfitMessages[Math.floor(Math.random() * outfitMessages.length)];
+        }
+
+        function changeDress() {
+            const dress = document.getElementById('dress');
+            const newColor = getRandomColor();
+            dress.style.background = `linear-gradient(45deg, ${newColor}, ${newColor}99)`;
+            updateOutfitInfo();
+        }
+
+        function changeShoes() {
+            const shoes = document.getElementById('shoes');
+            shoes.style.background = getRandomColor();
+            updateOutfitInfo();
+        }
+
+        function changeHat() {
+            const hat = document.getElementById('hat');
+            hat.style.background = getRandomColor();
+            updateOutfitInfo();
+        }
+
+        function randomizeAll() {
+            changeDress();
+            changeShoes();
+            changeHat();
+        }
+
+        function updateOutfitInfo() {
+            document.getElementById('outfit-info').textContent = getRandomMessage();
+        }
+
+        // Initialize with random colors
+        window.onload = function() {
+            randomizeAll();
+        };
+    </script>
+</body>
+</html>
